@@ -2,10 +2,7 @@ package com.avijeet.excel_differentiator.service;
 
 import com.avijeet.excel_differentiator.model.Change;
 import com.avijeet.excel_differentiator.util.DiffAlgo;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,8 +14,8 @@ import java.util.List;
 public class ExcelService {
     public List<Change> getExcelFileDifference(MultipartFile oldCommitFile, MultipartFile newCommitFile) {
         try {
-            Workbook oldWorkbook = new XSSFWorkbook(oldCommitFile.getInputStream());
-            Workbook newWorkbook = new XSSFWorkbook(newCommitFile.getInputStream());
+            Workbook oldWorkbook = WorkbookFactory.create(oldCommitFile.getInputStream());
+            Workbook newWorkbook = WorkbookFactory.create(newCommitFile.getInputStream());
 
             Sheet oldWorkbookSheet = oldWorkbook.getSheetAt(0);
             Sheet newWorkbookSheet = newWorkbook.getSheetAt(0);

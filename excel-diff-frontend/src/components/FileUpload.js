@@ -6,8 +6,8 @@ const FileUpload = () => {
     const [newFile, setNewFile] = useState(null);
     const [differences, setDifferences] = useState([]);
 
-    const handleOldFileChanges = (e) => e.setOldFile(e.target.files[0]);
-    const handleNewFileChanges = (e) => e.setNewFile(e.target.files[0]);
+    const handleOldFileChanges = (e) => setOldFile(e.target.files[0]);
+    const handleNewFileChanges = (e) => setNewFile(e.target.files[0]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/excel")
 public class ExcelController {
@@ -24,10 +25,12 @@ public class ExcelController {
 
     @PostMapping("/diff")
     public ResponseEntity<List<Change>> getDifferenceOfTwoExcelFiles(
-            @RequestParam("oldCommitFile") MultipartFile oldCommitFile,
-            @RequestParam("newCommitFile") MultipartFile newCommitFile) throws IOException {
+            @RequestPart("oldCommitFile") MultipartFile oldCommitFile,
+            @RequestPart("newCommitFile") MultipartFile newCommitFile) throws IOException {
 
         try {
+            if (null == oldCommitFile && null == newCommitFile)
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
             List<Change> changes = excelService.getExcelFileDifference(oldCommitFile, newCommitFile);
             return ResponseEntity.ok(changes);
         } catch (Exception e) {
