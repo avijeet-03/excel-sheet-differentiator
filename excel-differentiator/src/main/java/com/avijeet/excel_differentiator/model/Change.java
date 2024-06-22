@@ -13,5 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Change {
     private String type;
+    private int lineNo;
     private List<String> content;
 }
