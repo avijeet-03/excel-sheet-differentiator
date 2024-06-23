@@ -22,7 +22,6 @@ public class ExcelService {
             // convert the sheet data into list of lists of strings
             List<List<String>> oldFileData = getSheetData(oldWorkbookSheet);
             List<List<String>> newFileData = getSheetData(newWorkbookSheet);
-            
             // get the difference between two list of lists
             return DiffAlgo.findChanges(oldFileData, newFileData);
         } catch (Exception e) {
@@ -32,9 +31,15 @@ public class ExcelService {
 
     private List<List<String>> getSheetData(Sheet sheet) {
         List<List<String>> sheetData = new ArrayList<>();
-        for (Row row : sheet) {
+
+        for (int i = 0; i < sheet.getLastRowNum() + 1; i++) {
+            Row currRow = sheet.getRow(i);
             List<String> currRowData = new ArrayList<>();
-            for (Cell cell : row) {
+            if (null == currRow) {
+                sheetData.add(currRowData);
+                continue;
+            }
+            for (Cell cell : currRow) {
                 currRowData.add(cell.toString());
             }
             sheetData.add(currRowData);
