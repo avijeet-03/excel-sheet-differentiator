@@ -1,0 +1,43 @@
+
+.diff-viewer {
+    margin: 20px;
+}
+
+.diff-viewer table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.diff-viewer th, .diff-viewer td {
+    border: 1px solid #dcdcdc;
+    padding: 8px;
+    text-align: left;
+    min-width: 100px;
+    /* background-color: #ffffff; */
+}
+
+.diff-viewer td {
+    color: #555;
+}
+
+.diff-viewer .no_change {
+    background-color: white;
+}
+
+.diff-viewer .add {
+    background-color: #d4f4dd; 
+}
+
+.diff-viewer .delete {
+    background-color: #f8d7da; 
+}
+
+.diff-viewer .edit_old {
+    background-color: #f8d7da;
+}
+
+.diff-viewer .edit_new {
+    background-color: #d4f4dd; 
+}

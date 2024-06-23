@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ExcelService from "../services/ExcelService";
+import DiffViewer from "./DiffViewer";
 
 const FileUpload = () => {
     const [oldFile, setOldFile] = useState(null);
@@ -33,14 +34,7 @@ const FileUpload = () => {
           </div>
           <button type="submit">Upload and Compare</button>
         </form>
-        <div>
-          <h2>Differences</h2>
-          <ul>
-            {differences.map((difference, index) => (
-              <li key={index}>{difference}</li>
-            ))}
-          </ul>
-        </div>
+        <DiffViewer data={differences}/>
       </div>
     );
 };

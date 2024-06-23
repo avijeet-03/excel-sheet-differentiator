@@ -26,13 +26,13 @@ public class DiffAlgo {
         while (i > 0 && j > 0) {
             if (oldFileData.get(i - 1).equals(newFileData.get(j - 1))) {
                 // no changes detected
-                resultChanges.add(new Change("NO_CHANGE", i, oldFileData.get(i - 1)));
+                resultChanges.add(new Change("NO_CHANGE", j, oldFileData.get(i - 1)));
                 i--;
                 j--;
                 continue;
             }
 
-            int bestChoice = Math.min(dp[i - 1][j - 1], Math.min(dp[i][j - 1], dp[i][j - 1]));
+            int bestChoice = Math.min(dp[i - 1][j - 1], Math.min(dp[i][j - 1], dp[i - 1][j]));
 
             // whichever choice matches with the best Choice take that solution
             if (dp[i - 1][j] == bestChoice) {
@@ -41,7 +41,7 @@ public class DiffAlgo {
                 i--;
             } else if (dp[i][j - 1] == bestChoice) {
                 // addition of line j
-                resultChanges.add(new Change("ADD", j, newFileData.get(i - 1)));
+                resultChanges.add(new Change("ADD", j, newFileData.get(j - 1)));
                 j--;
             } else {
                 // edit of current line
